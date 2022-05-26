@@ -4,7 +4,7 @@ pipeline{
      stage("Maven Build"){
        steps{
             sh "mvn clean package"
-            sh "mv target/*.jar target/mcs-1.0.jar"
+            sh "mv target/*.jar target/mcs.jar"
         }
     }
      stage("deploy-dev"){
@@ -15,7 +15,7 @@ pipeline{
           test@:13.126.162.114 /home/test/apache-tomcat-9.0.63/webapps
           ssh test@13.126.162.114 /home/test/apache-tomcat-9.0.63/bin/shutdown.sh
           ssh test@13.126.162.114 /home/test/apache-tomcat-9.0.63/bin/startup.sh
-           """
+            """
           }
         }
     }
