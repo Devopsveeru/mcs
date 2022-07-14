@@ -3,8 +3,8 @@ node
     
 
 stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarQube'
-      withSonarQubeEnv('SonarQube') {
+    def scannerHome = tool 'sonarqube'
+      withSonarQubeEnv('sonarqube') {
       sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/bin/sonar-scanner \
      -D sonar.projectVersion=1.0-SNAPSHOT \
        -D sonar.login=admin \
