@@ -1,17 +1,14 @@
-pipeline{
-  agent any
-  stages{
-     stage("Maven Build"){
-       steps{
-            sh "mvn clean package"    
-        }
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('build') {
+     mvn clean package
+  }     
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=veera"
     }
-     stage("deploy-dev"){
-       steps{
-          sshagent(['deploy']) {
-          sh "scp -rp target/* nisha@65.0.27.124:/home/ec2-user"
-          }
-        }
-    }
-    }
+  }
 }
