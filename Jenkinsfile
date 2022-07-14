@@ -5,7 +5,7 @@ node
 stage('SonarQube Analysis') {
     def scannerHome = tool 'sonarqube'
       withSonarQubeEnv('sonarqube') {
-      sh """/home/ec2-user/sonarqube-9.5.0.56709/bin
+      sh """/home/ec2-user/sonarqube-9.5.0.56709/bin/sonar-scanner-2.6.1
      -D sonar.projectVersion=1.0-SNAPSHOT \
        -D sonar.login=admin \
       -D sonar.password=admin \
