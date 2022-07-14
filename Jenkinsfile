@@ -3,7 +3,7 @@ node {
     checkout scm
   }
   stage('build') {
-     mvn clean install 
+    sh "mvn clean package" 
    }     
   stage('SonarQube Analysis') {
     def mvn = tool 'Default Maven';
